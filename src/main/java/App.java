@@ -18,5 +18,11 @@ public class App {
             model.put("squads", Squad.getInstances());
             return new ModelAndView(model, "hompage.hbs");
         } , new HandlebarsTemplateEngine());
+
+        post("/homepage", (request, response) -> {
+            return new ModelAndView(model,layout);
+        }, new HandlebarsTemplateEngine());
+
+
     }
 }

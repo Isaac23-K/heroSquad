@@ -18,6 +18,9 @@ public class Hero {
     public static Collection<Object> getAll (){
         return getAll();
     }
+    public static Hero setUPNewHero(){
+        return new Hero("flash",23,"speed","people");
+    }
     public String getHero_name(){
         return hero_name;
     }
@@ -36,4 +39,11 @@ public class Hero {
     public void deleteHero (){
         instance.remove(-1);
     }
+    public static Hero setUpNewHero1(){
+        return new Hero("",24,"","");
+    }
+    public static Hero setUpNewHero2(){
+        return new Hero("",22,"","");
+    }
+
 }

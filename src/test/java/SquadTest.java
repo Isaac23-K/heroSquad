@@ -3,12 +3,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 class SquadTest {
 
     @BeforeEach
-    void setUp() {
-    }
-
+    void setUp() { }
     @AfterEach
     void tearDown() {
     }
@@ -16,16 +15,13 @@ class SquadTest {
     @Test
     void getName() {
     }
-
     @Test
-    void getCause() {
+    public void squadInstantiatesWithName_true() throws Exception {
+        Squad squad = new Squad("title", "cause", 3);
+        assertEquals("title", squad.getName());
+        assertEquals("cause", squad.getCause());
+        assertEquals(3, squad.getMax());
+
     }
 
-    @Test
-    void getMax() {
-    }
-
-    @Test
-    void getInstances() {
-    }
 }

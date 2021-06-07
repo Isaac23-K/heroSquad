@@ -14,5 +14,9 @@ public class App {
         Map<String,Object> model = new HashMap<String,Object>();
         String layout = "templates/layout.hbs";
 
+        get ("/", (request, response) -> {
+            model.put("squads", Squad.getInstances());
+            return new ModelAndView(model, "hompage.hbs");
+        } , new HandlebarsTemplateEngine());
     }
 }

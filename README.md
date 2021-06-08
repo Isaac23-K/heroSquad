@@ -16,7 +16,7 @@ Isaac Kaptoge
 - Run gradle run to view the app .
 
 ## Live link to project
--
+-https://kaptogehero.herokuapp.com/
 
 ## Copyright & License information
 - Isaac Kaptoge 2021

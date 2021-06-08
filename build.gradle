@@ -19,8 +19,8 @@ dependencies {
 }
 
 
-applicationName = 'heroisaac'
-archivesBaseName = "heroisaac"
+applicationName = ' kaptogehero'
+archivesBaseName = " kaptogehero"
 mainClassName = 'App'
 defaultTasks = ['clean']
 task stage(dependsOn: ['clean', 'installDist'])

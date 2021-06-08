@@ -15,35 +15,31 @@ public class Hero {
         this.powers = powers;
         this.weakness = weakness;
     }
-    public static Collection<Object> getAll (){
+
+    public static Collection<Object> getAll() {
         return getAll();
-    }
-    public static Hero setUPNewHero(){
-        return new Hero("flash",23,"speed","people");
-    }
-    public String getHero_name(){
+    };
+
+    public String getHero_name() {
         return hero_name;
     }
-    public int getAge(){
+
+    public int getAge() {
         return age;
     }
-    public String getPowers(){
-        return getPowers();
-    }
-    public String getWeakness(){
-        return weakness;
-    }
-    public static List<Hero> getInstance (){
-        return instance;
-    }
-    public void deleteHero (){
-        instance.remove(-1);
-    }
-    public static Hero setUpNewHero1(){
-        return new Hero("",24,"","");
-    }
-    public static Hero setUpNewHero2(){
-        return new Hero("",22,"","");
+
+    public String getPowers() {
+        return powers;
     }
 
+    public String getWeakness() {
+        return weakness;
+    }
+
+    public static List<Hero> getInstance() {
+        return instance;
+    }
+    public void deleteHero(){
+        instance.remove(-1);
+    }
 }

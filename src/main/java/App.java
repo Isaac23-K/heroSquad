@@ -1,4 +1,5 @@
-import java.util.HashMap ;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -6,22 +7,31 @@ import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import static spark.Spark.*;
 
-
 public class App {
     public static void main(String[] args) {
+        ProcessBuilder processBuilder = new ProcessBuilder();
+        Integer port;
+        if (processBuilder.environment().get("PORT") != null) {
+            port = Integer.parseInt(processBuilder.environment().get("PORT"));
+        } else {
+            port = 4567;
+        }
+        port(port);
 
         staticFileLocation("/public");
         Map<String,Object> model = new HashMap<String,Object>();
         String layout = "templates/layout.hbs";
 
-        get ("/", (request, response) -> {
+        get("/", (request, response) -> {
             model.put("squads", Squad.getInstances());
-            return new ModelAndView(model, "hompage.hbs");
+            return new ModelAndView(model, "homepage.hbs");
         } , new HandlebarsTemplateEngine());
 
         post("/homepage", (request, response) -> {
-            return new ModelAndView(model,layout);
+//            model.put("squads", Squad.all());
+            return new ModelAndView(model, layout);
         }, new HandlebarsTemplateEngine());
+
 
         get("/squads", (request, response) -> {
             List<Squad> squads = Squad.getInstances();
@@ -29,10 +39,33 @@ public class App {
             return new ModelAndView(model, "homepage.hbs");
         }, new HandlebarsTemplateEngine());
 
-        get ("/heroes/new", (request, response) -> {
-            // model.put("template", "templates/squadform.hbs");
+        get("squads/new", (request, response) -> {
+//            model.put("template", "templates/squadform.hbs");
+            return new ModelAndView(model, "squadform.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        post("/squads",(request, response) -> {
+            String squad_name = request.queryParams("squad_name");
+            String cause = request.queryParams("cause");
+            String maxsize = request.queryParams("maxsize");
+            Squad squad = new Squad(squad_name,cause,Integer.parseInt(maxsize));
+            model.put("squad_name",squad.getName());
+            model.put("cause", squad.getCause());
+            model.put("maxsize", squad.getMax());
+            return new ModelAndView(model, "squad.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        get("/heroes", (request, response) -> {
+            List<Hero> heroes = Hero.getInstance();
+            model.put("heroes",heroes);
+            return new ModelAndView(model, "homepage.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        get("/heroes/new", (request, response) -> {
+            //  model.put("template", "templates/squadform.hbs");
             return new ModelAndView(model, "heroform.hbs");
-        } , new HandlebarsTemplateEngine());
+        }, new HandlebarsTemplateEngine());
+
 
         //get: delete all squads and all heroes
         get("/squads/delete", (req, res) -> {
@@ -65,3 +98,4 @@ public class App {
         }, new HandlebarsTemplateEngine());
     }
 }
+
